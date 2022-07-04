@@ -8,13 +8,15 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
-    },
+        nodeIntegration: true,
+        contextIsolation: false
+    }
   });
   mainWindow.loadFile('index.html');
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
+  mainWindow.webContents.openDevTools()
 
   mainWindow.once('ready-to-show', () => {
     autoUpdater.checkForUpdatesAndNotify();
